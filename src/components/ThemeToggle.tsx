@@ -1,12 +1,18 @@
 import React from 'react';
 import { useTheme } from '../features/ThemeContext';
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 const ThemeToggle: React.FC = () => {
-    const { toggleTheme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
 
     return (
-        <button onClick={toggleTheme} className='bg-primary dark:bg-primary text-blue-600'>
-            Switch theme
+        <button onClick={toggleTheme}>
+            {
+                theme === 'light' ?
+                    (<MdOutlineLightMode className='text-xl text-black dark:text-white'/>)
+                :
+                    (<MdOutlineDarkMode className='text-xl text-black dark:text-white'/>)
+            }
         </button>
     );
 }

@@ -40,3 +40,17 @@ body {
       background-color: #030712;
     }
   }
+
+.nav-link {
+  @apply whitespace-nowrap px-5 py-1.5 rounded flex items-center gap-3;
+}
+
+@keyframes spin-close {
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+.spin {
+  animation: spin-close 150ms ease-out 1;
+}

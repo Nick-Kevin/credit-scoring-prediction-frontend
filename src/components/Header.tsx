@@ -10,34 +10,42 @@ const Header: React.FC = () => {
     const [openNav, setOpenNav] = useState<boolean>(false)
 
     const navItems = [
-        { id: 1, path:'/', name: 'Home', icon: <GoHome size={20}/> },
-        { id: 2, path:'/estimator', name: 'Estimator', icon: <HiOutlineCalculator size={20}/> },
-        { id: 3, path:'/model-explanation', name: 'Model Explanation', icon: <GoBook size={20}/> },
+        { id: 1, path:'/', name: 'Home', icon: <GoHome size={18}/> },
+        { id: 2, path:'/estimator', name: 'Estimator', icon: <HiOutlineCalculator size={18}/> },
+        { id: 3, path:'/model-explanation', name: 'Model Explanation', icon: <GoBook size={18}/> },
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full flex justify-between items-center p-5 bg-white dark:bg-blue-950 shadow-md">
+        <header className="fixed top-0 left-0 w-full shadow-md max-md:flex max-md:justify-between max-md:items-center bg-white dark:bg-blue-950">
 
-            <NavLink to='/' className='text-black dark:text-white flex items-center gap-4'>
-                <LuBrain size={30} className="text-blue-600" />
-                Credit Scoring AI
-            </NavLink>
+            <div className="flex justify-between items-center p-5 lg:px-16 xl:px-6 max-w-7xl md:mx-auto">
+                <NavLink to='/' className='flex items-center gap-4 whitespace-nowrap'>
+                    <LuBrain size={30} className="text-blue-600" />
+                    <span className="text-gray-900 dark:text-white xl:text-xl">Credit Scoring AI</span>
+                </NavLink>
 
-            {/* desktop */}
-            <nav className="hidden md:flex justify-end gap-5 w-full">
+                {/* desktop */}
+                <nav className="hidden md:flex justify-end gap-2 w-full">
+                    <ThemeToggle className="mr-4 cursor-pointer" />
+                    {
+                        navItems.map(item => (
+                            <NavLink
+                                to={item.path}
+                                key={item.id}
+                                className={({ isActive }) => isActive ? "destkop-nav-link bg-blue-600" : "destkop-nav-link text-gray-600 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900 transition-all duration-300 ease-out" }
+                            >
+                                {item.icon}{item.name}
+                            </NavLink>
+                        ))
+                    }
+                </nav>
+            </div>
+
+            <div className="md:hidden flex items-center gap-5 pr-5">
                 <ThemeToggle />
-                {
-                    navItems.map(item => (
-                        <NavLink to={item.path} key={item.id}>{item.name}</NavLink>
-                    ))
-                }
-            </nav>
-
-            <div className="flex items-center gap-5">
-                <ThemeToggle />
-                <div className="md:hidden relative flex items-center">
+                <div className="relative flex items-center">
                     {/* mobile bouton */}
-                    <button className="md:hidden" onClick={() => setOpenNav(!openNav)}>
+                    <button onClick={() => setOpenNav(!openNav)}>
                         {
                             openNav ?
                                 <AiOutlineClose size={25} className="text-black dark:text-white spin" />
@@ -47,7 +55,7 @@ const Header: React.FC = () => {
                     </button>
 
                     {/* mobile navigation */}
-                    <nav className={ openNav ? 'md:hidden absolute bg-white dark:bg-black top-7 right-0 flex flex-col gap-5 p-5 rounded-lg shadow border border-blue-100' : 'hidden'}>
+                    <nav className={ openNav ? 'absolute bg-white dark:bg-black top-7 right-0 flex flex-col gap-5 p-5 rounded-lg shadow border border-blue-100' : 'hidden'}>
                         {
                             navItems.map(item => (
                                 <NavLink

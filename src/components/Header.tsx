@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     ];
 
     return (
-        <header className="fixed top-0 left-0 w-full shadow-md max-md:flex max-md:justify-between max-md:items-center bg-white dark:bg-blue-950">
+        <header className="fixed top-0 left-0 w-full shadow-md max-md:flex max-md:justify-between max-md:items-center bg-white dark:bg-gray-900">
 
             <div className="flex justify-between items-center p-5 lg:px-16 xl:px-6 max-w-7xl md:mx-auto">
                 <NavLink to='/' className='flex items-center gap-4 whitespace-nowrap'>

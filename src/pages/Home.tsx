@@ -45,14 +45,14 @@ const Home: React.FC = () => {
                 <p className="md:max-w-9/12 xl:max-w-7/12 leading-tight md:leading-relaxed text-lg md:text-xl">Plateform using machine learning model to forecast or evaluate credit risk based on multivariate data</p>
             </section>
             <section className="mt-16">
-                <div className="grid gap-5">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6">
                     {
                         featureItems.map((feature) => (
-                            <div key={feature.id} className="p-5 shadow-xl bg-white dark:bg-blue-950 text-start rounded-xl">
-                                <div className={`w-min mb-4 p-2 rounded-lg ${feature.iconContainerClass}`}>
+                            <div key={feature.id} className="p-5 xl:p-6 shadow-xl bg-white dark:bg-gray-900 text-start rounded-xl">
+                                <div className={`w-min mb-4 p-2 xl:p-3 rounded-lg ${feature.iconContainerClass}`}>
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-gray-900 mb-2">{feature.title}</h3>
+                                <h3 className="text-gray-900 dark:text-gray-50 xl:text-lg mb-2">{feature.title}</h3>
                                 <p className="text-sm">{feature.content}</p>
                             </div>
                         ))

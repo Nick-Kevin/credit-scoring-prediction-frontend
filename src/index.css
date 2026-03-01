@@ -20,7 +20,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  @apply text-gray-600 dark:text-white;
+  @apply text-gray-600 dark:text-white/70;
 }
 
 @theme {

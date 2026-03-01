@@ -14,7 +14,11 @@ interface NavItem {
 }
 
 const Header: React.FC = () => {
-    const [openNav, setOpenNav] = useState<boolean>(false)
+    const [openNav, setOpenNav] = useState<boolean>(false);
+
+    const handleMobileMenu = (): void => {
+        setOpenNav(!openNav);
+    };
 
     const navItems: NavItem[] = [
         { id: 1, path:'/', name: 'Home', icon: <GoHome size={18}/> },
@@ -52,7 +56,7 @@ const Header: React.FC = () => {
                 <ThemeToggle />
                 <div className="relative flex items-center">
                     {/* mobile bouton */}
-                    <button onClick={() => setOpenNav(!openNav)}>
+                    <button onClick={():void => handleMobileMenu()}>
                         {
                             openNav ?
                                 <AiOutlineClose size={25} className="text-black dark:text-white spin" />
@@ -68,6 +72,7 @@ const Header: React.FC = () => {
                                 <NavLink
                                     to={item.path}
                                     key={item.id}
+                                    onClick={():void => handleMobileMenu()}
                                     className={({ isActive }) => isActive ? 'bg-blue-600 nav-link text-white' : 'text-black dark:text-white nav-link'}
                                 >
                                     {item.icon}

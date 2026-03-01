@@ -6,10 +6,17 @@ import { GoHome, GoBook } from "react-icons/go";
 import { HiOutlineCalculator } from "react-icons/hi2";
 import ThemeToggle from "./ThemeToggle";
 
+interface NavItem {
+    id: number,
+    path: string,
+    name: string,
+    icon: React.JSX.Element,
+}
+
 const Header: React.FC = () => {
     const [openNav, setOpenNav] = useState<boolean>(false)
 
-    const navItems = [
+    const navItems: NavItem[] = [
         { id: 1, path:'/', name: 'Home', icon: <GoHome size={18}/> },
         { id: 2, path:'/estimator', name: 'Estimator', icon: <HiOutlineCalculator size={18}/> },
         { id: 3, path:'/model-explanation', name: 'Model Explanation', icon: <GoBook size={18}/> },
@@ -32,7 +39,7 @@ const Header: React.FC = () => {
                             <NavLink
                                 to={item.path}
                                 key={item.id}
-                                className={({ isActive }) => isActive ? "destkop-nav-link bg-blue-600" : "destkop-nav-link text-gray-600 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900 transition-all duration-300 ease-out" }
+                                className={({ isActive }) => isActive ? "destkop-nav-link bg-blue-600 text-white" : "destkop-nav-link text-gray-600 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900 transition-all duration-300 ease-out" }
                             >
                                 {item.icon}{item.name}
                             </NavLink>
@@ -61,7 +68,7 @@ const Header: React.FC = () => {
                                 <NavLink
                                     to={item.path}
                                     key={item.id}
-                                    className={({ isActive }) => isActive ? 'bg-blue-600 nav-link' : 'text-black dark:text-white nav-link'}
+                                    className={({ isActive }) => isActive ? 'bg-blue-600 nav-link text-white' : 'text-black dark:text-white nav-link'}
                                 >
                                     {item.icon}
                                     {item.name}

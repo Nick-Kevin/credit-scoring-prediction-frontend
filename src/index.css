@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: #e9f0ff;
 
   font-synthesis: none;
@@ -19,9 +20,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  @apply text-gray-600 dark:text-white;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-primary: #dddddd;

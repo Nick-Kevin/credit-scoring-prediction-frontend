@@ -83,8 +83,8 @@ const Home: React.FC = () => {
                                 <div className={`w-min mb-4 p-2 xl:p-3 rounded-lg ${feature.iconContainerClass}`}>
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-gray-900 dark:text-gray-50 xl:text-lg mb-2">{feature.title}</h3>
-                                <p className="text-xs lg:text-sm">{feature.content}</p>
+                                <h3 className="text-gray-900 dark:text-gray-50 xl:text-xl mb-2">{feature.title}</h3>
+                                <p className="max-lg:text-xs">{feature.content}</p>
                             </div>
                         ))
                     }
@@ -92,20 +92,24 @@ const Home: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-5 mt-12">
                     {
                         navItems.map((nav) => (
-                            <div
+                            <button
                                 key={nav.id}
-                                className="p-6 xl:p-9 shadow-xl hover:shadow-2xl bg-white dark:bg-gray-900 text-start rounded-xl relative group transition-all ease-out cursor-pointer"
+                                className="relative z-0 p-6 xl:p-9 shadow-xl hover:shadow-2xl bg-white dark:bg-gray-900 text-start rounded-xl group flex flex-col transition-all ease-out cursor-pointer"
                                 onClick={ () => handleNavItemClick(nav.path) }
                             >
                                 <div className="w-min mb-4 p-2 xl:p-3 rounded-lg bg-blue-100">
                                     {nav.icon}
                                 </div>
                                 <FaArrowRightLong className="absolute top-9 right-10 group-hover:right-9 text-gray-300 group-hover:text-blue-600 transition-all ease-out" />
-                                <h2 className="text-gray-900 dark:text-gray-50 xl:text-lg mb-2">{nav.title}</h2>
-                                <p className="max-md:text-sm">{nav.content}</p>
-                            </div>
+                                <h2 className="text-gray-900 dark:text-gray-50 xl:text-2xl mb-2">{nav.title}</h2>
+                                <p className="max-md:text-sm xl:text-lg">{nav.content}</p>
+                            </button>
                         ))
                     }
+                </div>
+                <div className="mt-12 p-5 xl:p-6 bg-white/70 dark:bg-gray-900 text-start rounded-xl">
+                    <h3 className="text-gray-900 dark:text-gray-50 xl:text-xl mb-2">About this demo</h3>
+                    <p className="max-lg:text-xs leading-relaxed">This is a demo of a supervised machine learning project for credit scoring prediction made by two MSc Artificial Intelligence and Machine Learning students. A classification task was used to make the model predict among low, medium, and high risk. Most data preprocessing techniques were applied to a private dataset to train and evaluate several machine learning models. The best-performing model is used in this demo.</p>
                 </div>
             </section>
         </>

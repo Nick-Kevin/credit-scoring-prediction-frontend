@@ -6,7 +6,7 @@ const Layout: React.FC = () => {
     return (
         <>
             <Header />
-            <main className="pt-24 max-w-6xl mx-auto md:max-lg:px-12">
+            <main className="pt-24 max-w-6xl mx-auto md:max-lg:px-12 mb-6">
                 <Outlet />
             </main>
         </>

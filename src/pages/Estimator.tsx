@@ -1,6 +1,7 @@
 import React from "react";
+import Input from "../components/Input";
 
-const Estimator: React.FC = () => {
+const Estimator: React.FC = (): React.JSX.Element => {
     return (
         <>
             <section>
@@ -12,26 +13,34 @@ const Estimator: React.FC = () => {
                 <form className="bg-white dark:bg-gray-900 rounded-xl p-6 text-start shadow-lg">
                     <h2 className="text-gray-900 dark:text-white text-lg mb-3">Required information</h2>
                     <div className="grid md:grid-cols-2 gap-3">
-                        <div className="flex flex-col">
-                            <label htmlFor="personal-items" className="text-sm mb-2">Total personal items</label>
-                            <input name="personal-items" type="number" min="0" defaultValue={5} className="border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600" />
-                        </div>
-                        <div className="flex flex-col">
-                            <label htmlFor="asset-quality" className="text-sm mb-2">Asset Quality</label>
-                            <input name="asset-quality" type="number" min="0" defaultValue={1} className="border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600" />
-                        </div>
-                        <div className="flex flex-col">
-                            <label htmlFor="arrear-score" className="text-sm mb-2">Arrears risk score</label>
-                            <input name="arrear-score" type="number" step="0.1" min="0" defaultValue={1} className="border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600" />
-                        </div>
-                        <div className="flex flex-col">
-                            <label htmlFor="loan-account" className="text-sm mb-2">Total loan-account</label>
-                            <input name="loan-account" type="number" min="0" defaultValue={10} className="border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600" />
-                        </div>
-                        <div className="flex flex-col">
-                            <label htmlFor="credit-diversity" className="text-sm mb-2">Credit diversity</label>
-                            <input name="credit-diversity" type="number" min="0" defaultValue={8} className="border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600" />
-                        </div>
+                        <Input id="personal-items" label="Total personal items" type="number" defaultValue={6} min={0} />
+                        <Input id="asset-quality" label="Asset Quality" type="number" defaultValue={1} min={0} />
+                        <Input id="arrear-score" label="Arrears risk score" type="number" defaultValue={1} min={0} step={0.1} />
+                        <Input id="loan-account" label="Total loan-account" type="number" defaultValue={10} min={0} />
+                        <Input id="credit-diversity" label="Credit diversity" type="number" defaultValue={8} min={0} />
+                        <Input id="credit-prod-count" label="Credit product count" type="number" defaultValue={5} min={0} />
+                        <Input id="credit-activity" label="Credit activity score" type="number" defaultValue={2} min={0} step={0.1} />
+                        <Input id="age" label="Age" type="number" defaultValue={30} min={18} max={150} />
+                        <Input id="edu-lvl" label="Education level" type="number" defaultValue={8} min={0} />
+                        <Input id="loan-duration" label="Loan duration years" type="number" defaultValue={1} min={0} />
+                        <Input id="loan-amount" label="Loan amount" type="number" defaultValue={5000} min={500} />
+                        <Input id="exp" label="Working experience" type="number" defaultValue={2} min={0} step={0.1} />
+                        <Input id="job-title" label="Current job title" type="number" defaultValue={1} min={0} max={10} />
+                        <Input id="company-duration" label="Duration current company" type="number" defaultValue={2} min={0} step={0.1} />
+                        <Input id="industry" label="Industry" type="number" defaultValue={1} min={0} />
+                        <Input id="emp-secondary" label="Employment secondary type" type="number" defaultValue={2} min={0} />
+                        <Input id="income" label="Disponsable income" type="number" defaultValue={2000} min={500} />
+                        <Input id="marital-sts" label="Marital status" type="number" defaultValue={1} min={0} />
+                        <Input id="write-offs" label="Write offs" type="number" defaultValue={8} min={0} />
+                        <Input id="arrears" label="Arrears" type="number" defaultValue={5} min={0} />
+                        <Input id="last-yrs-arr" label="Last year arrears" type="number" defaultValue={10} min={0} />
+                        <Input id="credit-card-history-hire-purchase" label="Credit card history hire purchase" type="number" defaultValue={1} min={0} step={0.1} />
+                        <Input id="credit-utilisation" label="Credit utilisation" type="number" defaultValue={2} min={0} />
+                        <Input id="credit-cards-last-year" label="Credit cards last year" type="number" defaultValue={5} min={0} />
+                        <Input id="hire-purchase-last-year" label="Hire purchase last year" type="number" defaultValue={2} min={0} />
+                        <Input id="loans-last-year" label="Loans last year" type="number" defaultValue={5} min={0} />
+                        <Input id="debt-ratio" label="Debt ratio" type="number" defaultValue={5} min={0} />
+                        <Input id="active-emis" label="Active EMIs" type="number" defaultValue={8} min={0} step={0.1} />
                     </div>
                     <button type="submit" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all mt-6 w-full py-2.5">
                         Predict the risk category

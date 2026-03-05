@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 
 const Estimator: React.FC = (): React.JSX.Element => {
+    const [persoItems, setPersoItems] = useState<number>(6)
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+
+        console.log("Total personal items: " + persoItems);
+    };
+
     return (
         <>
             <section>
                 <h1 className="mt-2 text-gray-900 dark:text-white text-2xl md:text-3xl">Credit Scoring Category Estimator</h1>
                 <p className="mt-4 max-md:text-sm">Fill out the form and submit to let the machine learning model determine the loan eligibility</p>
             </section>
-            <section className="mt-9 grid lg:grid-cols-2 gap-5">
+            <section className="mt-9 grid gap-5">
                 {/* Form */}
-                <form className="bg-white dark:bg-gray-900 rounded-xl p-6 text-start shadow-lg">
+                <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 rounded-xl p-6 text-start shadow-lg flex flex-col items-center">
                     <h2 className="text-gray-900 dark:text-white text-lg mb-3">Required information</h2>
-                    <div className="grid md:grid-cols-2 gap-3">
-                        <Input id="personal-items" label="Total personal items" type="number" defaultValue={6} min={0} />
+                    <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3 w-full">
+                        <Input id="personal-items" label="Total personal items" type="number" defaultValue={persoItems} min={0} onChange={(e) => setPersoItems(Number(e.target.value))} />
                         <Input id="asset-quality" label="Asset Quality" type="number" defaultValue={1} min={0} />
                         <Input id="arrear-score" label="Arrears risk score" type="number" defaultValue={1} min={0} step={0.1} />
                         <Input id="loan-account" label="Total loan-account" type="number" defaultValue={10} min={0} />
@@ -42,13 +50,13 @@ const Estimator: React.FC = (): React.JSX.Element => {
                         <Input id="debt-ratio" label="Debt ratio" type="number" defaultValue={5} min={0} />
                         <Input id="active-emis" label="Active EMIs" type="number" defaultValue={8} min={0} step={0.1} />
                     </div>
-                    <button type="submit" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all mt-6 w-full py-2.5">
+                    <button type="submit" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all mt-6 w-full lg:max-w-60 py-2.5">
                         Predict the risk category
                     </button>
                 </form>
                 {/* Result */}
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-start shadow-lg grid grid-rows-5">
-                    <h2 className="text-gray-900 dark:text-white text-lg mb-3 row-span-1">Forecasted result</h2>
+                    <h2 className="text-gray-900 dark:text-white text-lg mb-3 row-span-1 text-center">Forecasted result</h2>
                     <div className="row-start-2 row-end-6 flex items-center">
                         <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto">Click on click after filling out the form to determine the risk category</p>
                     </div>

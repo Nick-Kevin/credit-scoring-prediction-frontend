@@ -5,12 +5,13 @@ interface InputProps {
     label: string,
     type: string,
     defaultValue: number | string,
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
     min?: number,
     max?: number,
     step?: number
 };
 
-const Input: React.FC<InputProps> = ({ id, label, type, defaultValue, min, max, step }): React.JSX.Element => {
+const Input: React.FC<InputProps> = ({ id, label, type, defaultValue, onChange, min, max, step }): React.JSX.Element => {
     return (
         <div className="flex flex-col">
             <label htmlFor={id} className="text-sm mb-2">
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({ id, label, type, defaultValue, min, max, 
                 max          = {`${max}`}
                 step         = {`${step}`}
                 defaultValue = {defaultValue}
+                onChange     = {onChange}
                 className    = "border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600"
             />
         </div>

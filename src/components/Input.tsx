@@ -27,6 +27,7 @@ const Input: React.FC<InputProps> = ({ id, label, type, defaultValue, onChange, 
                 defaultValue = {defaultValue}
                 onChange     = {onChange}
                 className    = "border border-gray-300 p-3.5 py-1.5 rounded-lg focus:outline focus:outline-blue-600"
+                required
             />
         </div>
     );

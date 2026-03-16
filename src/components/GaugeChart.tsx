@@ -5,15 +5,33 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale } from "char
 
 ChartJS.register(annotationPlugin, ArcElement, Tooltip, Legend, LinearScale);
 
-const GaugeChart: React.FC = (): React.JSX.Element => {
-    const [currentValue, setCurrentValue] = useState<number>(0);
-    const VALUE: number = 45;
+type order = 'low' | 'medium' | 'high';
+
+interface chartProps {
+    result: order,
+};
+
+interface contentItems {
+    color: string,
+    content: string,
+    value: number,
+}
+
+const GaugeChart: React.FC<chartProps> = ({ result }): React.JSX.Element => {
+    const [contentItems, setContentItems] = useState<contentItems>({ color: '', content: '', value: 0});
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setCurrentValue(VALUE);
-        }, 100)
-        return () => clearTimeout(timer);
+        switch(result) {
+            case 'low':
+                setContentItems({ color: '#3dc076', content: 'Low Risk', value: 20});
+                break;
+            case 'medium':
+                setContentItems({ color: '#3b82f6', content: 'Medium Risk', value: 50});
+                break;
+            case 'high':
+                setContentItems({ color: '#ef4444', content: 'High Risk', value: 80});
+                break;
+        };
     }, [])
 
     return (
@@ -21,8 +39,8 @@ const GaugeChart: React.FC = (): React.JSX.Element => {
             <Doughnut
                 data={{
                     datasets: [{
-                        data: [currentValue, 100-currentValue],
-                        backgroundColor: ['#3b82f6', 'rgb(234, 234, 234)'],
+                        data: [contentItems.value, 100-contentItems.value],
+                        backgroundColor: [contentItems.color, 'rgb(234, 234, 234)'],
                         borderWidth: 0,
                         borderRadius: [
                             { outerStart: 23, innerStart: 23 },
@@ -35,6 +53,9 @@ const GaugeChart: React.FC = (): React.JSX.Element => {
                     circumference: 180,
                     rotation: -90,
                     cutout: '80%',
+                    hover: {
+                        mode: undefined,
+                    },
                     animation: {
                         animateRotate: true,
                         animateScale: true,
@@ -58,13 +79,16 @@ const GaugeChart: React.FC = (): React.JSX.Element => {
                         }
                     },
                     plugins: {
+                        tooltip: {
+                            enabled: false,
+                        },
                         annotation: {
                             annotations: {
                                 label: {
                                     type: 'label',
-                                    content: ['Medium Risk'],
+                                    content: [contentItems.content],
                                     font: { size: 20, family: 'system-ui, Avenir, Helvetica, Arial, sans-serif', weight: 'bolder' },
-                                    color: '#3b82f6',
+                                    color: contentItems.color,
                                     backgroundColor: 'transparent',
                                     xScaleID: 'x',
                                     yScaleID: 'y',

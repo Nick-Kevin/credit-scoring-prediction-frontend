@@ -1,12 +1,21 @@
-import React, { useState} from "react";
+import React, { useState, useEffect, type JSX} from "react";
 import Form from "../components/Form";
 import GaugeChart from "../components/GaugeChart";
-import { BsCheck2Circle } from "react-icons/bs";
+import { BsCheck2Circle, BsArrowUpRightCircle } from "react-icons/bs";
+import { GoXCircle } from "react-icons/go";
 
+type result = 'low' | 'medium' | 'high';
 
+interface predictionIndicator {
+    content: 'Good' | 'Acceptable' | 'Risky',
+    color: 'text-green-600' | 'text-blue-600' | 'text-red-600',
+    backgroundColor: 'bg-green-50' | 'bg-blue-50' | 'bg-red-50',
+    icon: JSX.Element,
+}
 
 const Estimator: React.FC = (): React.JSX.Element => {
-    const [result, setResult] = useState<Boolean>(false);
+    const [result, setResult] = useState<result>();
+    const [indicator, setIndicator] = useState<predictionIndicator>();
 
     const handleSubmit = (): void => {
         setTimeout(() => {
@@ -15,8 +24,37 @@ const Estimator: React.FC = (): React.JSX.Element => {
                 behavior: 'smooth'
             });
         }, 10)
-        setResult(true);
+        setResult('low');
     }
+
+    useEffect(() => {
+        switch(result) {
+            case 'low':
+                setIndicator({
+                    content: 'Good',
+                    color: 'text-green-600',
+                    backgroundColor: 'bg-green-50',
+                    icon: <BsCheck2Circle className="text-2xl" />
+                });
+                break;
+            case 'medium':
+                setIndicator({
+                    content: 'Acceptable',
+                    color: 'text-blue-600',
+                    backgroundColor: 'bg-blue-50',
+                    icon: <BsArrowUpRightCircle className="text-2xl" />
+                });
+                break;
+            case 'high':
+                setIndicator({
+                    content: 'Risky',
+                    color: 'text-red-600',
+                    backgroundColor: 'bg-red-50',
+                    icon: <GoXCircle className="text-2xl" />
+                });
+                break;
+        };
+    }, [result]);
 
     return (
         <>
@@ -33,16 +71,16 @@ const Estimator: React.FC = (): React.JSX.Element => {
                         {
                             result ?
                                 (
-                                    <div className="bg-blue-50 dark:bg-black/50 w-full flex flex-col items-center rounded-lg py-6">
+                                    <div className={`dark:bg-black/50 w-full flex flex-col items-center rounded-lg py-6 ${indicator?.backgroundColor}`}>
                                         <div className="flex justify-between w-full px-32">
                                             <p>Predicted risk</p>
-                                            <div className="flex items-center gap-3 text-blue-600">
-                                                <BsCheck2Circle className="text-2xl" />
-                                                <span>Acceptable</span>
+                                            <div className={`flex items-center gap-3 ${indicator?.color}`}>
+                                                { indicator?.icon}
+                                                <span>{ indicator?.content }</span>
                                             </div>
                                         </div>
                                         <div className="mx-80">
-                                            <GaugeChart key={ JSON.stringify(result) } />
+                                            <GaugeChart key={ JSON.stringify(result) } result={result} />
                                         </div>
                                     </div>
                                 )

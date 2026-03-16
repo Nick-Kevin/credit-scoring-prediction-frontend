@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { Chart as ChartJS } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale } from "chart.js";
 
-ChartJS.register(annotationPlugin);
+ChartJS.register(annotationPlugin, ArcElement, Tooltip, Legend, LinearScale);
 
 const GaugeChart: React.FC = (): React.JSX.Element => {
+    const [currentValue, setCurrentValue] = useState<number>(0);
     const VALUE: number = 45;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentValue(VALUE);
+        }, 100)
+        return () => clearTimeout(timer);
+    }, [])
 
     return (
         <>
             <Doughnut
                 data={{
                     datasets: [{
-                        data: [VALUE, 100-VALUE],
+                        data: [currentValue, 100-currentValue],
                         backgroundColor: ['#3b82f6', 'rgb(234, 234, 234)'],
                         borderWidth: 0,
                         borderRadius: [
@@ -27,6 +35,13 @@ const GaugeChart: React.FC = (): React.JSX.Element => {
                     circumference: 180,
                     rotation: -90,
                     cutout: '80%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 3000,
+                        easing: 'easeOutQuart',
+                        delay: 15
+                    },
                     scales: {
                         y: {
                             type: 'linear', // Explicitly set the type to 'linear'

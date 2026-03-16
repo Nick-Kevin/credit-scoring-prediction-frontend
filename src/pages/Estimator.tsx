@@ -1,15 +1,20 @@
 import React, { useState} from "react";
 import Form from "../components/Form";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale } from 'chart.js';
 import GaugeChart from "../components/GaugeChart";
 import { BsCheck2Circle } from "react-icons/bs";
 
-ChartJS.register(ArcElement, Tooltip, Legend, LinearScale);
+
 
 const Estimator: React.FC = (): React.JSX.Element => {
     const [result, setResult] = useState<Boolean>(false);
 
     const handleSubmit = (): void => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 10)
         setResult(true);
     }
 
@@ -28,7 +33,7 @@ const Estimator: React.FC = (): React.JSX.Element => {
                         {
                             result ?
                                 (
-                                    <div className="bg-blue-50 w-full flex flex-col items-center rounded-lg py-6">
+                                    <div className="bg-blue-50 dark:bg-black/50 w-full flex flex-col items-center rounded-lg py-6">
                                         <div className="flex justify-between w-full px-32">
                                             <p>Predicted risk</p>
                                             <div className="flex items-center gap-3 text-blue-600">
@@ -37,7 +42,7 @@ const Estimator: React.FC = (): React.JSX.Element => {
                                             </div>
                                         </div>
                                         <div className="mx-80">
-                                            <GaugeChart />
+                                            <GaugeChart key={ JSON.stringify(result) } />
                                         </div>
                                     </div>
                                 )

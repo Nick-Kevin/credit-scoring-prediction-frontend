@@ -53,13 +53,20 @@ const GaugeChart: React.FC<chartProps> = ({ result }): React.JSX.Element => {
                     circumference: 180,
                     rotation: -90,
                     cutout: '80%',
+                    radius: '80%',
                     hover: {
                         mode: undefined,
                     },
                     animation: {
                         animateRotate: true,
-                        animateScale: true,
-                        duration: 3000,
+                        animateScale: false,
+                        duration: (context) => {
+                            if (context.type === 'data' && context.dataIndex === 1) {
+                                return 2000;
+                            }
+
+                            return 2000;
+                        },
                         easing: 'easeOutQuart',
                         delay: 15
                     },
@@ -93,7 +100,7 @@ const GaugeChart: React.FC<chartProps> = ({ result }): React.JSX.Element => {
                                     xScaleID: 'x',
                                     yScaleID: 'y',
                                     xValue: '50%',
-                                    yValue: 10,
+                                    yValue: 15,
                                     display: true
                                 }
                             }

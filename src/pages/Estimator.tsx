@@ -65,28 +65,28 @@ const Estimator: React.FC = (): React.JSX.Element => {
             <section className="mt-9 grid gap-5">
                 <Form onSubmit={handleSubmit} />
                 {/* Result */}
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-start shadow-lg">
-                    <h2 className="text-gray-900 dark:text-white text-lg mb-3 text-center">Forecasted result</h2>
-                    <div className="row-start-2 row-end-6 flex justify-center items-center">
+                <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden pt-3 xl:pt-6 text-start shadow-lg h-72 grid grid-rows-5">
+                    <h2 className="row-start-1 row-end-2 text-gray-900 dark:text-white text-lg mb-3 text-center">Forecasted result</h2>
+                    <div className="row-start-2 row-end-6 flex justify-center">
                         {
                             result ?
                                 (
-                                    <div className={`dark:bg-black/50 w-full flex flex-col items-center rounded-lg py-6 ${indicator?.backgroundColor}`}>
-                                        <div className="flex justify-between w-full px-32">
+                                    <div className={`dark:bg-black/50 w-full aspect-square flex flex-col items-center rounded-t-[100%] xl:rounded-t-4xl py-6 ${indicator?.backgroundColor}`}>
+                                        <div className="flex justify-between w-full px-5 md:px-16 xl:px-32">
                                             <p>Predicted risk</p>
                                             <div className={`flex items-center gap-3 ${indicator?.color}`}>
                                                 { indicator?.icon}
                                                 <span>{ indicator?.content }</span>
                                             </div>
                                         </div>
-                                        <div className="mx-80">
+                                        <div className="xl:mx-80">
                                             <GaugeChart key={ JSON.stringify(result) } result={result} />
                                         </div>
                                     </div>
                                 )
                             :
                                 (
-                                    <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto">
+                                    <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto mb-10">
                                         Click on click after filling out the form to determine the risk category
                                     </p>
                                 )

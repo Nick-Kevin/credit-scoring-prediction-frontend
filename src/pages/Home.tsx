@@ -71,9 +71,9 @@ const Home: React.FC = () => {
     return (
         <>
             <section className="flex flex-col items-center gap-5">
-                <LuBrain className="text-5xl text-blue-600" />
+                <LuBrain className="text-5xl md:text-6xl text-blue-600" />
                 <h1 className="text-gray-900 dark:text-gray-50 text-4xl md:text-5xl">Credit Scoring AI</h1>
-                <p className="md:max-w-10/12 xl:max-w-7/12 leading-tight md:leading-relaxed text-lg md:text-xl">Plateform using machine learning model to forecast or evaluate credit risk based on multivariate data</p>
+                <p className="md:max-w-10/12 xl:max-w-7/12 leading-tight md:leading-relaxed md:text-xl">Plateform using machine learning model to forecast or evaluate credit risk based on multivariate data</p>
             </section>
             <section className="mt-16">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6">

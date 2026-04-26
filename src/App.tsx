@@ -13,7 +13,7 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='estimator' element={<Estimator/>} />
-          <Route path='model-explanation' element={<Explanation />}/>
+          <Route path='about' element={<Explanation />}/>
         </Route>
       </Routes>
     </Router>

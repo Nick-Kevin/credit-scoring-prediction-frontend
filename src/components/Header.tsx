@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     const navItems: NavItem[] = [
         { id: 1, path:'/', name: 'Home', icon: <GoHome size={18}/> },
         { id: 2, path:'/estimator', name: 'Estimator', icon: <HiOutlineCalculator size={18}/> },
-        { id: 3, path:'/model-explanation', name: 'Model Explanation', icon: <GoBook size={18}/> },
+        { id: 3, path:'/about', name: 'About', icon: <GoBook size={18}/> },
     ];
 
     return (

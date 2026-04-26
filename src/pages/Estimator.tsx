@@ -86,9 +86,11 @@ const Estimator: React.FC = (): React.JSX.Element => {
                                 )
                             :
                                 (
-                                    <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto mb-10">
-                                        Click on click after filling out the form to determine the risk category
-                                    </p>
+                                    <div className="flex items-center">
+                                        <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto mb-10">
+                                            Click on click after filling out the form to determine the risk category
+                                        </p>
+                                    </div>
                                 )
                         }   
                     </div>

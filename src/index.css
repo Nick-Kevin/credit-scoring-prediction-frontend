@@ -49,6 +49,10 @@ body {
   @apply flex items-center gap-1.5 px-4 py-1.5 xl:py-2 rounded-lg;
 }
 
+.explanation-card {
+  @apply grid grid-cols-11 md:max-lg:gap-x-12 relative z-0 p-6 xl:p-9 shadow-xl bg-white dark:bg-gray-900 text-start rounded-xl mb-8;
+}
+
 @keyframes spin-close {
   to {
     transform: rotate(90deg);

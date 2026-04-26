@@ -1,7 +1,9 @@
 import React from "react";
 import { LuBrain } from "react-icons/lu";
 import { LuTarget } from "react-icons/lu";
+import { LuChartBarDecreasing } from "react-icons/lu";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import FeatureChart from "../components/FeatureChart";
 
 const Explanation: React.FC = () => {
     interface riskLevelItem {
@@ -34,7 +36,7 @@ const Explanation: React.FC = () => {
             content: "Better available rate",
             color: "bg-green-600"
         }
-    ] 
+    ];
 
     return (
         <>
@@ -46,7 +48,7 @@ const Explanation: React.FC = () => {
                 </p>
             </section>
             <section className="mt-14 max-w-5xl mx-auto">
-                <div className="grid grid-cols-11 md:max-lg:gap-x-12 relative z-0 p-6 xl:p-9 shadow-xl bg-white dark:bg-gray-900 text-start rounded-xl group mb-8">
+                <div className="explanation-card">
                     <div className="w-min p-2 xl:p-3 rounded-lg bg-blue-100 col-start-1 col-end-2">
                         <LuTarget className="text-blue-600 text-xl md:text-3xl" />
                     </div>
@@ -59,7 +61,18 @@ const Explanation: React.FC = () => {
                         performing model is selected to be deployment on this lateform.</span>
                     </p>
                 </div>
-                <div className="grid grid-cols-11 md:max-lg:gap-x-12 relative z-0 p-6 xl:p-9 shadow-xl bg-white dark:bg-gray-900 text-start rounded-xl group mb-8">
+                <div className="explanation-card">
+                    <div className="w-min p-2 xl:p-3 rounded-lg bg-green-100 col-start-1 col-end-2">
+                        <LuChartBarDecreasing className="text-green-600 text-xl md:text-3xl" />
+                    </div>
+                    <h2 className="text-gray-900 dark:text-white xl:text-xl col-start-3 md:col-start-2 col-end-12">
+                        Feature impact
+                    </h2>
+                    <div className="max-md:col-start-1 max-md:col-end-12 md:col-start-2 md:col-end-12 max-md:mt-5">
+                        <FeatureChart />
+                    </div>
+                </div>
+                <div className="explanation-card">
                     <div className="w-min p-2 xl:p-3 rounded-lg bg-yellow-100 col-start-1 col-end-2">
                         <AiOutlineExclamationCircle className="text-yellow-600 text-xl md:text-3xl" />
                     </div>
@@ -72,7 +85,7 @@ const Explanation: React.FC = () => {
                                         <p className="text-white text-center">{risk.level}</p>
                                     </div>
                                     <div className="max-md:col-start-3 max-md:col-end-8">
-                                        <p className="text-black dark:text-white">{risk.label}</p>
+                                        <p className="text-black dark:text-whitegi">{risk.label}</p>
                                         <p className="text-sm">{risk.content}</p>
                                     </div>
                                 </div>

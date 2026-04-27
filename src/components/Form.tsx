@@ -110,7 +110,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
                 <Input id="debt-ratio" label="Debt ratio" type="number" defaultValue={formData.debtRatio} min={0} onChange={(e) => updateField('debtRatio', Number(e.target.value))} />
                 <Input id="active-emis" label="Active EMIs" type="number" defaultValue={formData.emis} min={0} step={0.1} onChange={(e) => updateField('emis', Number(e.target.value))} />
             </div>
-            <button type="submit" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all mt-6 w-full lg:max-w-60 py-2.5">
+            <button type="submit" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all mt-6 w-full lg:max-w-60 py-2.5 cursor-pointer">
                 Predict the risk category
             </button>
         </form>

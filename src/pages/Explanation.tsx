@@ -89,7 +89,7 @@ const Explanation: React.FC = () => {
                                         <p className="text-white text-center">{risk.level}</p>
                                     </div>
                                     <div className="max-md:col-start-3 max-md:col-end-8">
-                                        <p className="text-black dark:text-whitegi">{risk.label}</p>
+                                        <p className="text-black dark:text-white">{risk.label}</p>
                                         <p className="text-sm">{risk.content}</p>
                                     </div>
                                 </div>

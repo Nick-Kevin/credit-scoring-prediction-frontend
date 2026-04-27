@@ -68,6 +68,10 @@ const Explanation: React.FC = () => {
                     <h2 className="text-gray-900 dark:text-white xl:text-xl col-start-3 md:col-start-2 col-end-12">
                         Feature impact
                     </h2>
+                    <p className="max-md:col-start-1 max-md:col-end-12 md:col-start-2 md:col-end-12 max-md:mt-5 md:mb-5 max-md:text-sm">
+                        Some features are more impactful than others. Check the 7 most impactful features on the visualization below.
+                        <span className="block md:hidden text-black dark:text-white text-xs mt-3">Click on bars to see details.</span>
+                    </p>
                     <div className="max-md:col-start-1 max-md:col-end-12 md:col-start-2 md:col-end-12 max-md:mt-5">
                         <FeatureChart />
                     </div>

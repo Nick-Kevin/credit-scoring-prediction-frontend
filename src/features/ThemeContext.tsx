@@ -3,26 +3,26 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
-    theme: Theme;
+    theme: Theme | undefined;
     toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>('light');
+    const [theme, setTheme] = useState<Theme | undefined>();
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') as Theme | null;
-        if (savedTheme) {
-            setTheme(savedTheme);
-        }
+        savedTheme ? setTheme(savedTheme) : setTheme('light');
     }, []);
 
     useEffect(() => {
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(theme);
-        localStorage.setItem('theme', theme);
+        if (theme) {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(theme);
+            localStorage.setItem('theme', theme);
+        }
     }, [theme]);
 
     const toggleTheme = () => {

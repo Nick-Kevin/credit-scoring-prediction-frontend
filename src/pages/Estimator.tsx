@@ -16,8 +16,13 @@ interface predictionIndicator {
 const Estimator: React.FC = (): React.JSX.Element => {
     const [result, setResult] = useState<result>();
     const [indicator, setIndicator] = useState<predictionIndicator>();
+    const [data, setData] = useState<string | undefined>(undefined);
 
     const handleSubmit = (): void => {
+        fetch('/api/data')
+            .then(response => response.json())
+            .then(data => setData(data.message));
+
         setTimeout(() => {
             window.scrollTo({
                 top: document.body.scrollHeight,
@@ -95,6 +100,11 @@ const Estimator: React.FC = (): React.JSX.Element => {
                         }   
                     </div>
                 </div>
+                {
+                    data ? (
+                        <p className="text-2xl">{data}</p>
+                    ) : (<></>)
+                }
             </section>
         </>
     );

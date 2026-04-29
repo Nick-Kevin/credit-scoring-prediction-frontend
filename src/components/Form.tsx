@@ -34,9 +34,31 @@ interface FormData {
 
 interface FormProps {
     onSubmit: (result: Boolean) => void;
+};
+
+interface PostResponse {
+    level: string
+};
+
+async function createPost(data: FormData): Promise<PostResponse> {
+    const response = await fetch('/api/endpoint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState<FormData>({
         persoItems: 6,
         assetQuality: 1,
@@ -68,9 +90,19 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
         emis: 5
     })
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
+        setIsLoading(true);
         onSubmit(true);
+
+        try {
+            const riskLevel = await createPost(formData);
+            console.log('Risk level', riskLevel);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Something went wrong');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const updateField = (field: keyof FormData, value: number): void => {

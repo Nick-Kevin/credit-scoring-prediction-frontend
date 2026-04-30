@@ -129,7 +129,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
                 <Input id="company-duration" label="Duration current company" type="number" defaultValue={formData.durationCompany} min={0} step={0.1} onChange={(e) => updateField('durationCompany', Number(e.target.value))} />
                 <Input id="industry" label="Industry" type="number" defaultValue={formData.industry} min={0} onChange={(e) => updateField('industry', Number(e.target.value))} />
                 <Input id="emp-secondary" label="Employment secondary type" type="number" defaultValue={formData.secondaryType} min={0} onChange={(e) => updateField('secondaryType', Number(e.target.value))} />
-                <Input id="income" label="Disponsable income" type="number" defaultValue={formData.income} min={500} onChange={(e) => updateField('income', Number(e.target.value))} />
+                <Input id="income" label="Disponsable income" type="number" defaultValue={formData.income} min={0} onChange={(e) => updateField('income', Number(e.target.value))} />
                 <Input id="marital-sts" label="Marital status" type="number" defaultValue={formData.maritalStatus} min={0} onChange={(e) => updateField('maritalStatus', Number(e.target.value))} />
                 <Input id="write-offs" label="Write offs" type="number" defaultValue={formData.writesOff} min={0} onChange={(e) => updateField('writesOff', Number(e.target.value))} />
                 <Input id="arrears" label="Arrears" type="number" defaultValue={formData.arrears} min={0} onChange={(e) => updateField('arrears', Number(e.target.value))} />

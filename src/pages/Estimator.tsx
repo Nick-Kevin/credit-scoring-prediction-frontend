@@ -14,23 +14,34 @@ interface predictionIndicator {
 }
 
 const Estimator: React.FC = (): React.JSX.Element => {
-    const [result, setResult] = useState<result>();
+    const [result, setResult] = useState<result | null>(null);
     const [indicator, setIndicator] = useState<predictionIndicator>();
-    const [data, setData] = useState<string | undefined>(undefined);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const handleSubmit = (): void => {
-        fetch('/api/data')
-            .then(response => response.json())
-            .then(data => setData(data.message));
-
+    const handleSubmit = (riskLevel: number | null): void => {
         setTimeout(() => {
             window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: 'smooth'
             });
-        }, 10)
-        setResult('low');
-    }
+        }, 10);
+
+        switch(riskLevel) {
+            case 0:
+                setResult('low');
+                break;
+            case 1:
+                setResult('medium');
+                break;
+            case 2:
+                setResult('high');
+                break;
+            case null:
+                setResult(null);
+                break;
+        };
+        setIsLoading(false);
+    };
 
     useEffect(() => {
         switch(result) {
@@ -68,7 +79,7 @@ const Estimator: React.FC = (): React.JSX.Element => {
                 <p className="mt-4 max-md:text-sm">Fill out the form and submit to let the machine learning model determine the loan eligibility</p>
             </section>
             <section className="mt-9 grid gap-5">
-                <Form onSubmit={handleSubmit} />
+                <Form onSubmit={handleSubmit} loading={() => setIsLoading(true)} />
                 {/* Result */}
                 <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden pt-3 xl:pt-6 text-start shadow-lg h-72 grid grid-rows-5">
                     <h2 className="row-start-1 row-end-2 text-gray-900 dark:text-white text-lg mb-3 text-center">Forecasted result</h2>
@@ -93,18 +104,18 @@ const Estimator: React.FC = (): React.JSX.Element => {
                                 (
                                     <div className="flex items-center">
                                         <p className="text-center text-gray-400 lg:max-w-10/12 lg:mx-auto mb-10">
-                                            Click on click after filling out the form to determine the risk category
+                                            {
+                                                isLoading ?
+                                                    "Loading.."
+                                                :
+                                                    "Click on click after filling out the form to determine the risk category"
+                                            }
                                         </p>
                                     </div>
                                 )
                         }   
                     </div>
                 </div>
-                {
-                    data ? (
-                        <p className="text-2xl">{data}</p>
-                    ) : (<></>)
-                }
             </section>
         </>
     );

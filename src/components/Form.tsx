@@ -33,7 +33,8 @@ interface FormData {
 }
 
 interface FormProps {
-    onSubmit: (result: Boolean) => void;
+    onSubmit: (riskLevel: number | null) => void;
+    loading: () =>void;
 };
 
 interface PostResponse {
@@ -56,8 +57,7 @@ async function createPost(data: FormData): Promise<PostResponse> {
     return response.json();
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+const Form: React.FC<FormProps> = ({ onSubmit, loading }): React.JSX.Element => {
     const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState<FormData>({
         persoItems: 3,
@@ -92,16 +92,15 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.JSX.Element => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        setIsLoading(true);
-        onSubmit(true);
+        onSubmit(null);
+        loading();
 
         try {
-            const riskLevel = await createPost(formData);
-            console.log('Risk level', riskLevel);
+            const result = await createPost(formData);
+            const riskLevel: number = result['result'];
+            onSubmit(riskLevel);
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Something went wrong');
-        } finally {
-            setIsLoading(false);
         }
     };
 
